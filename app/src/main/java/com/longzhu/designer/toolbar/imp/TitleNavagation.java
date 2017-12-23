@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.longzhu.designer.R;
 import com.longzhu.designer.toolbar.INavagation;
 
-public class HomeNavagation extends DefalutNavigation<HomeNavagation.HomeNavagationParam> {
+public class HomeNavagation extends LCRNavigation<HomeNavagation.HomeNavagationParam> {
 
     public HomeNavagation(HomeNavagationParam param) {
         super(param);
