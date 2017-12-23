@@ -17,6 +17,7 @@ import com.longzhu.designer.toolbar.INavagation;
 
 public abstract class AbsNavigation<P extends AbsNavigation.AbsNavigationParam> implements INavagation {
     protected static final int DEFALT_LAYOUT = 0;
+    protected static final float DEFALT_LAYOUT_WEIGHT = 0f;
     private P param;
     private View contentView;
 

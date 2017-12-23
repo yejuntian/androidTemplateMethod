@@ -13,8 +13,8 @@ import com.longzhu.designer.R;
  * 抽象某种场景下的导航条功能（左、中、右）
  */
 
-public abstract class DefalutNavigation<P extends AbsNavigation.AbsNavigationParam> extends AbsNavigation<P> {
-    public DefalutNavigation(P param) {
+public abstract class LCRNavigation<P extends AbsNavigation.AbsNavigationParam> extends AbsNavigation<P> {
+    public LCRNavigation(P param) {
         super(param);
     }
 
@@ -25,23 +25,47 @@ public abstract class DefalutNavigation<P extends AbsNavigation.AbsNavigationPar
     }
 
     @Override
-    public void build() {
+    public final void build() {
         //千万不能忘记
         super.build();
         //动态的场景导航条布局
-        LinearLayout rightLinearLayout = createChildLayout(1.0f, Color.BLUE);
-        LinearLayout centerLinearLayout = createChildLayout(2.0f, Color.YELLOW);
-        LinearLayout leftLinearLayout = createChildLayout(1.0f, Color.RED);
+        float rightLayoutWeight = bindRightLayoutWeight();
+        if(rightLayoutWeight != DEFALT_LAYOUT_WEIGHT){
+            LinearLayout rightLinearLayout = createChildLayout(rightLayoutWeight, Color.BLUE);
+            //回调定义好的规范方法
+            bindParent(bindRightLayoutId(), rightLinearLayout);
+            initRightLayout(rightLinearLayout);
+        }
 
-        //回调定义好的规范方法
-        bindParent(bindLeftLayoutId(), leftLinearLayout);
-        bindParent(bindCenterLayoutId(), centerLinearLayout);
-        bindParent(bindRightLayoutId(), rightLinearLayout);
+        float centerLayoutWeight = bindCenterLayoutWeight();
+        if(centerLayoutWeight !=DEFALT_LAYOUT_WEIGHT){
+            LinearLayout centerLinearLayout = createChildLayout(centerLayoutWeight, Color.YELLOW);
+            bindParent(bindCenterLayoutId(), centerLinearLayout);
+            initCenterLayout(centerLinearLayout);
+        }
 
-        initLeftLayout(leftLinearLayout);
-        initCenterLayout(centerLinearLayout);
-        initRightLayout(rightLinearLayout);
+        float leftLayoutWeight =  bindLeftLayoutWeight();
+        if(leftLayoutWeight != DEFALT_LAYOUT_WEIGHT){
+            LinearLayout leftLinearLayout = createChildLayout(leftLayoutWeight, Color.RED);
+            bindParent(bindLeftLayoutId(), leftLinearLayout);
+            initLeftLayout(leftLinearLayout);
+        }
     }
+
+    /**
+     * 左边布局比重
+     */
+    public abstract float bindLeftLayoutWeight();
+
+    /**
+     * 中边布局比重
+     */
+    public abstract float bindCenterLayoutWeight();
+
+    /**
+     * 右边布局比重
+     */
+    public abstract float bindRightLayoutWeight();
 
     /**
      * 绑定左边布局

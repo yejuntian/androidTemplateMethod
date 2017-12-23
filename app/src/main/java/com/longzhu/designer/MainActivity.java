@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.longzhu.designer.toolbar.imp.HomeNavagation;
+import com.longzhu.designer.toolbar.imp.TitleNavagation;
 
 public class MainActivity extends Activity {
     private LinearLayout toolBarContainer;
@@ -16,7 +16,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         toolBarContainer = findViewById(R.id.ll_toolbarContainer);
 
-        HomeNavagation.Builders build = new HomeNavagation.Builders(this,toolBarContainer);
+        TitleNavagation.Builders build = new TitleNavagation.Builders(this,toolBarContainer);
         build.setRightImageLeftRes(R.mipmap.ic_launcher);
         build.setRightImageLeftOnClickListener(new View.OnClickListener() {
             @Override

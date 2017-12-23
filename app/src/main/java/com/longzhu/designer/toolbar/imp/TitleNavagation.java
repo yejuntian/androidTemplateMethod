@@ -10,10 +10,25 @@ import android.widget.TextView;
 import com.longzhu.designer.R;
 import com.longzhu.designer.toolbar.INavagation;
 
-public class HomeNavagation extends LCRNavigation<HomeNavagation.HomeNavagationParam> {
+public class TitleNavagation extends LCRNavigation<TitleNavagation.HomeNavagationParam> {
 
-    public HomeNavagation(HomeNavagationParam param) {
+    public TitleNavagation(HomeNavagationParam param) {
         super(param);
+    }
+
+    @Override
+    public float bindLeftLayoutWeight() {
+        return 0;
+    }
+
+    @Override
+    public float bindCenterLayoutWeight() {
+        return 1;
+    }
+
+    @Override
+    public float bindRightLayoutWeight() {
+        return 0;
     }
 
     @Override
@@ -43,7 +58,7 @@ public class HomeNavagation extends LCRNavigation<HomeNavagation.HomeNavagationP
 
         @Override
         public INavagation builder() {
-            return new HomeNavagation(homeNavagationParam);
+            return new TitleNavagation(homeNavagationParam);
 
         }
 
